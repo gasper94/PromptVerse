@@ -1,3 +1,5 @@
+// 'use strict'
+
 import React, { Children } from 'react'
 import '@styles/globals.css'
 
