@@ -4,7 +4,7 @@ import Link from 'next/link'
 const Form = ({
   type,
   post,
-  SetPost,
+  setPost,
   submitting,
   handleSubmit
 }) => {
@@ -29,7 +29,7 @@ const Form = ({
           <span className='font-satoshi font-semibold text-base text-gray-700'>Your AI Prompt</span>
           <textarea
             value={post.prompt}
-            onChange={(e) => SetPost({... post,
+            onChange={(e) => setPost({... post,
             prompt: e.target.value })}
             placeholder='Write your prompt here...'
             required
@@ -43,7 +43,7 @@ const Form = ({
 
           <input
             value={post.tag}
-            onChange={(e) => SetPost({... post,
+            onChange={(e) => setPost({... post,
             tag: e.target.value })}
             placeholder='#tag'
             required
