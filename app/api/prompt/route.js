@@ -7,10 +7,10 @@ export const GET = async (request) => {
 
     const prompts = await Prompt.find({}).populate("creator");
 
-    const response = Response(JSON.stringify(prompts), { status: 200 });
+    const response = new Response(JSON.stringify(prompts), { status: 200 });
 
     // Add a unique identifier to the URL to force a cache-busting reload
-    const url = new URL(req.url);
+    const url = new URL(request.url);
     url.searchParams.set("t", Date.now());
     response.headers.set(
       "Cache-Control",
