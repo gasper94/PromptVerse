@@ -47,6 +47,7 @@ const PropmptCard = ({
             }
             width={12}
             height={12}
+            alt='profile'
           />
         </div>
       </div>
@@ -55,6 +56,7 @@ const PropmptCard = ({
       <p className='font-inter text-sm blue_gradient cursor-pointer'
         onClick={() => handleTagClick && handleTagClick(post.tag)}
       >{post.tag}</p>
+
     </div>
   )
 }
