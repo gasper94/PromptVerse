@@ -3,15 +3,15 @@
 import React from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import { useState, useEffect } from 'react';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
 
 const Nav = () => {
     const { data: session } = useSession();
-
+    const router = useRouter();
     const isUserLogged = true;
-
 
     const [providers, setProviders] = useState(null);
     const [toggleDropdown, settoggleDropdow] = useState(false)
@@ -25,12 +25,19 @@ const Nav = () => {
         setUpProviders();
      },[])
 
+     const handleSignOut = async () => {
+        settoggleDropdow(false);
+        await signOut();
+        router.push('/');
+     }
+
   return (
     <nav className='flex-between w-full mb-16 pt-3'>
         <Link href={'/'} className='flex gap-2 flex-center'>
             <Image alt='logo' src={'assets/images/logo.svg'} width={'30'} height={'30'} className='object-contain'/>
             <p className='logo_text'>PromptVerse</p>
         </Link>
+
 
         {/* Desktop Navigation */}
         <div className='sm:flex hidden'>
@@ -40,10 +47,12 @@ const Nav = () => {
                         Create Post
                     </Link>
 
-                    <button type='button' className='outline_btn' onClick={() => {
-                                settoggleDropdow(false);
-                                signOut();
-                            }}>
+                    <button type='button' className='outline_btn' onClick={async() =>{
+                         router.push('/');
+                        setTimeout(() => {
+                            signOut();
+                        },500)
+                    }}>
                         Sign Out
                     </button>
 
@@ -91,9 +100,10 @@ const Nav = () => {
                               Create Prompt
                             </Link>
 
-                            <button type='button' onClick={() => {
-                                settoggleDropdow(false);
-                                signOut();
+                            <button type='button' onClick={async() =>{
+                                await router.push('/');
+                                await settoggleDropdow(false);
+                                await signOut();
                             }}
                             className='mt-5 w-full black_btn'
                             >
