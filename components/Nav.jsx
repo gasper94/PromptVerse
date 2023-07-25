@@ -51,7 +51,7 @@ const Nav = () => {
                          router.push('/');
                         setTimeout(() => {
                             signOut();
-                        },500)
+                        },50)
                     }}>
                         Sign Out
                     </button>
@@ -101,9 +101,10 @@ const Nav = () => {
                             </Link>
 
                             <button type='button' onClick={async() =>{
-                                await router.push('/');
-                                await settoggleDropdow(false);
-                                await signOut();
+                                router.push('/');
+                                setTimeout(() => {
+                                    signOut();
+                                },50)
                             }}
                             className='mt-5 w-full black_btn'
                             >
