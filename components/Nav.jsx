@@ -38,7 +38,7 @@ const Nav = () => {
             <p className='logo_text'>PromptVerse</p>
         </Link>
 
-
+         
         {/* Desktop Navigation */}
         <div className='sm:flex hidden'>
             {session?.user ? (
@@ -46,6 +46,11 @@ const Nav = () => {
                     <Link href={'/create-prompt'} className="black_btn">
                         Create Post
                     </Link>
+
+                    <Link href={'/add-resume'} className="black_btn">
+                        Add Resume
+                    </Link>
+                   
 
                     <button type='button' className='outline_btn' onClick={async() =>{
                          router.push('/');
