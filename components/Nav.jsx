@@ -25,15 +25,10 @@ const Nav = () => {
         setUpProviders();
      },[])
 
-     const handleSignOut = async () => {
-        settoggleDropdow(false);
-        await signOut();
-        router.push('/');
-     }
 
   return (
     <nav className='flex-between w-full mb-16 pt-3'>
-        <Link href={'/'} className='flex gap-2 flex-center'>
+        <Link href={'/dashboard'} className='flex gap-2 flex-center'>
             <Image alt='logo' src={'assets/images/logo.svg'} width={'30'} height={'30'} className='object-contain'/>
             <p className='logo_text'>PromptVerse</p>
         </Link>
@@ -51,9 +46,9 @@ const Nav = () => {
                         Add Resume
                     </Link>
                    
-
+                    {/* Check */}
                     <button type='button' className='outline_btn' onClick={async() =>{
-                         router.push('/');
+                        router.push('/');
                         setTimeout(() => {
                             signOut();
                         },50)
@@ -61,7 +56,7 @@ const Nav = () => {
                         Sign Out
                     </button>
 
-                    <Link href={'/'}>
+                    <Link href={'/dashboard'}>
                         <Image src={session?.user.image} width={'37'} height={'37'} className='rounded-full' alt='profile'
                         onClick={() => settoggleDropdow((prev) => !prev )} />
                     </Link>
@@ -70,7 +65,11 @@ const Nav = () => {
                 <>
                     {providers && 
                         Object.values(providers).map((provider) =>(
-                            <button type='button' key={provider.name} onClick={() => signIn(provider.id)} className='black_btn'>
+                            <button type='button' key={provider.name} onClick={() => {
+                                signIn(provider.id);
+                                router.push('/dashboard');
+                            }} 
+                            className='black_btn'>
                                 Sign In
                             </button>
                         ))
@@ -126,6 +125,11 @@ const Nav = () => {
                                 key={provider.name}
                                 onClick={() => {
                                     signIn(provider.id);
+                                    // router.push('/dashboard');
+                                    setTimeout(() => {
+                                        router.push('/dashboard');
+                                    },1000)
+                                    
                                 }}
                                 className='black_btn'
                             >

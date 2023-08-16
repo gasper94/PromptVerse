@@ -87,7 +87,7 @@ const ResumeForm = ({
         </label> */}
 
         <div className='flex-end mx-3 mb-5 gap-4'>
-              <Link href='/' className='text-gray-500 text-sm'>
+              <Link href='dashboard' className='text-gray-500 text-sm'>
                 Cancel
               </Link>
 
