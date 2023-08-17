@@ -53,9 +53,9 @@ const Nav = () => {
         <div className='sm:flex hidden'>
             {session?.user ? (
                 <div className='flex gap-3 md:gap-5'>
-                    <Link href={'/create-prompt'} className="black_btn">
+                    {/* <Link href={'/create-prompt'} className="black_btn">
                         Create Post
-                    </Link>
+                    </Link> */}
 
                     <Link href={'/add-resume'} className="black_btn">
                         Add Resume
@@ -89,7 +89,7 @@ const Nav = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {/* <div className='sm:hidden flex relative'>
+        <div className='sm:hidden flex relative'>
             {session?.user ? (
                 <div className='flex'>
                     <Image src={session?.user.image} width={'37'} height={'37'} className='rounded-full' alt='profile'  
@@ -143,7 +143,7 @@ const Nav = () => {
                     )}
                 </>
             )}
-        </div> */}
+        </div>
 
 
     </nav>

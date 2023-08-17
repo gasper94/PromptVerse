@@ -2,12 +2,13 @@ import React from 'react';
 
 import ThirdLayout from '@app/ThirdLayout';
 
+// import Table from "../../components/table";
+import ResumeFeed from '@components/ResumeFeed';
+
 function Dashboard(props) {
     return (
         <ThirdLayout>
-            <div>
-                This is my dashboard!
-            </div>
+            <ResumeFeed />
         </ThirdLayout>
     );
 }
