@@ -5,11 +5,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
+
 import { useState, useEffect } from 'react';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
 
 const Nav = () => {
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
     const router = useRouter();
     const isUserLogged = true;
 
@@ -25,6 +26,20 @@ const Nav = () => {
         setUpProviders();
      },[])
 
+    //  useEffect(()=>{
+    //     console.log("status:", status);
+    //  })
+
+
+    const handleSignIn = async (providerId) => {
+        // console.log("status:", status);
+        await signIn(providerId, {
+            callbackUrl: `/dashboard`,
+            });
+        // console.log("status:", status);
+        // await router.push('/dashboard');
+        //    console.log("status:", status);
+    };
 
   return (
     <nav className='flex-between w-full mb-16 pt-3'>
@@ -46,12 +61,10 @@ const Nav = () => {
                         Add Resume
                     </Link>
                    
-                    {/* Check */}
                     <button type='button' className='outline_btn' onClick={async() =>{
-                        router.push('/');
-                        setTimeout(() => {
-                            signOut();
-                        },50)
+                        await signOut({
+                        callbackUrl: `/`,
+                        });
                     }}>
                         Sign Out
                     </button>
@@ -65,12 +78,9 @@ const Nav = () => {
                 <>
                     {providers && 
                         Object.values(providers).map((provider) =>(
-                            <button type='button' key={provider.name} onClick={() => {
-                                signIn(provider.id);
-                                router.push('/dashboard');
-                            }} 
+                            <button type='button' key={provider.name} onClick={() => handleSignIn(provider.id)} 
                             className='black_btn'>
-                                Sign In
+                                Sign Inx
                             </button>
                         ))
                     }
@@ -79,7 +89,7 @@ const Nav = () => {
         </div>
 
         {/* Mobile Navigation */}
-        <div className='sm:hidden flex relative'>
+        {/* <div className='sm:hidden flex relative'>
             {session?.user ? (
                 <div className='flex'>
                     <Image src={session?.user.image} width={'37'} height={'37'} className='rounded-full' alt='profile'  
@@ -105,10 +115,8 @@ const Nav = () => {
                             </Link>
 
                             <button type='button' onClick={async() =>{
-                                router.push('/');
-                                setTimeout(() => {
-                                    signOut();
-                                },50)
+                                await signOut();
+                                await router.push('/');
                             }}
                             className='mt-5 w-full black_btn'
                             >
@@ -123,13 +131,9 @@ const Nav = () => {
                             <button
                                 type='button'
                                 key={provider.name}
-                                onClick={() => {
-                                    signIn(provider.id);
-                                    // router.push('/dashboard');
-                                    setTimeout(() => {
-                                        router.push('/dashboard');
-                                    },1000)
-                                    
+                                onClick={async() => {
+                                    await signIn(provider.id);
+                                    await router.push('/dashboard');
                                 }}
                                 className='black_btn'
                             >
@@ -139,7 +143,7 @@ const Nav = () => {
                     )}
                 </>
             )}
-        </div>
+        </div> */}
 
 
     </nav>

@@ -10,8 +10,8 @@ const Home = () => {
 
   return (
     <section className="w-full flex-center flex-col">
-      {!session?.user ? (
-        <>
+      {/* {!session?.user ? (
+        <> */}
         <h1 className="head_text text-center">
             Discover & Share
             <br className="max-md:hidden"/>
@@ -20,13 +20,10 @@ const Home = () => {
             <p className="desc text-center">
               An open-source AI prompting tool designed for the modern world, enabling users to explore, craft, and exchange imaginative prompts effortlessly.
             </p>
-        </>
-      ):(null)}
+        {/* </>
+      ):(null)} */}
         {/* Feed */}
         {/* <Feed /> */}
-
-        {/* Resume Feed */}
-        <ResumeFeed />
     </section>
   )
 }
