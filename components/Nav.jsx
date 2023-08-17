@@ -42,7 +42,7 @@ const Nav = () => {
     };
 
   return (
-    <nav className='flex-between w-full mb-16 pt-3'>
+    <nav className='flex-between w-full'>
         <Link href={'/dashboard'} className='flex gap-2 flex-center'>
             <Image alt='logo' src={'assets/images/logo.svg'} width={'30'} height={'30'} className='object-contain'/>
             <p className='logo_text'>PromptVerse</p>
@@ -80,7 +80,7 @@ const Nav = () => {
                         Object.values(providers).map((provider) =>(
                             <button type='button' key={provider.name} onClick={() => handleSignIn(provider.id)} 
                             className='black_btn'>
-                                Sign Inx
+                                Sign In
                             </button>
                         ))
                     }

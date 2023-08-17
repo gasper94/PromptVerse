@@ -1,10 +1,14 @@
 import React from 'react';
 
+import ThirdLayout from '@app/ThirdLayout';
+
 function Dashboard(props) {
     return (
-        <div>
-            This is my dashboard!
-        </div>
+        <ThirdLayout>
+            <div>
+                This is my dashboard!
+            </div>
+        </ThirdLayout>
     );
 }
 
